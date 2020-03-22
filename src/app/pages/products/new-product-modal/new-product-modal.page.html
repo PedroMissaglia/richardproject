@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>newProductModal</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <form class="form" [formGroup]="productForm">
+      <ion-item>
+        <ion-label position="floating" color="primary">Name</ion-label>
+        <ion-input type="text" clearInput formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating" color="primary">Description</ion-label>
+        <ion-textarea clearInput formControlName="description"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating" color="primary">Type</ion-label>
+        <ion-input clearInput formControlName="type"></ion-input>
+      </ion-item>  
+      <ion-item>
+        <ion-datetime displayFormat="DD MM YYYY" placeholder="Select Date" min="1989-06-04" max="2999-12-31" display-timezone="utc" formControlName="expirationDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Available</ion-label>
+        <ion-toggle slot="start" value="true" name="available" checked formControlName="status"></ion-toggle>
+      </ion-item>
+
+      <ion-button [disabled]="productForm.invalid" type="submit" expand="block" (click)="addProduct($event)">Submit</ion-button>
+    </form>
+</ion-list>
+</ion-content>

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Products</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-card *ngFor="let product of (products | async)">
+      <ion-card-header>
+       <ion-card-title class="ion-text-center"> 
+        {{product.name}}
+       </ion-card-title> 
+      </ion-card-header>
+      <ion-card-content>
+          <div class='ion-text-center'>{{product.description}}</div>
+          <div class='ion-text-center'>{{product.type}}</div>
+          <div class='ion-text-center'>{{product.expirationDate | date: 'dd/MM/yyyy'}}</div>
+          <ion-item *ngIf="product.status; else notAvaliable" color="success">
+            <ion-icon name="checkmark-outline"></ion-icon>Avaliable
+          </ion-item>
+          <ng-template #notAvaliable>
+            <ion-item color="danger">
+              <ion-icon name="close-outline"></ion-icon>Not Avaliable
+            </ion-item>
+          </ng-template>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <section>
+    <ion-button (click)="showNewProductModal()" expand="block">
+      <ion-icon name="add-circle-outline"></ion-icon>
+       Add product
+    </ion-button>
+  </section>
+
+</ion-content>
